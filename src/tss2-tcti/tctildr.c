@@ -156,6 +156,9 @@ tctildr_conf_parse(const char *name_conf, char *name, char *conf) {
     LOG_DEBUG("name_conf: \"%s\"", name_conf);
     if (combined_length == 0)
         return TSS2_RC_SUCCESS;
+    /* name and conf are allocated as strlen(name_conf) + 1 bytes in
+     * tctildr_conf_parse_alloc(), so copying each substring is safe here.
+     */
     split = strchr(name_conf, ':');
     if (name != NULL && split == NULL) {
         /* no ':' tcti name only */
